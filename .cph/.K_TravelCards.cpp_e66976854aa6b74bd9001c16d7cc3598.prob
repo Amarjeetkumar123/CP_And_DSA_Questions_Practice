@@ -1,0 +1,1 @@
+{"name":"Local: K_TravelCards","url":"d:\\CarrierBootcamp\\K_TravelCards.cpp","tests":[{"id":1659115123066,"input":"2 2 1 2 1\nBDDB C\nC BDDB","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CarrierBootcamp\\K_TravelCards.cpp","group":"local","local":true}
