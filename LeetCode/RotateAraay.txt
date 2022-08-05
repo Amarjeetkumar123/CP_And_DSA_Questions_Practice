@@ -1,0 +1,53 @@
+Question Link : https://leetcode.com/problems/rotate-array/
+
+Code : 
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+     
+        int n=nums.size();
+        k=k%n;                       //remove extra iterations
+        int temp;
+        
+        for(int i=0;i<n/2;i++)     //reverse the array
+        {
+            swap(nums[i],nums[n-1-i]);
+    
+        }
+        
+        for(int i=0;i<k/2;i++)    //reverse the first k numbers
+        {
+            swap(nums[i],nums[k-1-i]);
+           
+        }
+        
+        for(int i=0;i<(n-k)/2;i++)    //reverse the last (n-k) numbers
+        {
+            swap(nums[k+i],nums[n-1-i]);
+            
+        }
+        
+    }
+};
+
+
+
+// Using STL 
+
+code : 
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        k = k%n;
+        
+        if(n==0 || n==1)
+            return;
+        
+        // using STL
+        std::rotate(nums.begin() , nums.begin()+(n-k) , nums.end());
+        
+    }
+};
