@@ -14,9 +14,12 @@ int solve(int *a, int n, int k) {
 		if (pre == k) {
 			len = max(len, i + 1);
 		}
+		
 		if (m.find(pre - k) != m.end()) {
 			len = max(len, i - m[pre - k]);
-		} else {
+		} 
+
+		if(!m.count(pre)) {
 			m[pre] = i;
 		}
 	}
