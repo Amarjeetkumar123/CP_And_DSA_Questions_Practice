@@ -15,14 +15,14 @@ int main()
         cin >> arr[i];
 
         int ans = 1;
-    int sum = 0;
+        int sum = 0;
 
     for (int i = 1; i <= k; i++)
         sum += arr[i];
 
     int Min = sum;
 
-    // slidding window
+    // slidding window 
     int l = 0, r = k;
 
     while(r < n){
