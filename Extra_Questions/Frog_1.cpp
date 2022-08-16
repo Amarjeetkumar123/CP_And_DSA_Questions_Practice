@@ -12,6 +12,7 @@ int solve(int *arr , int n, int *dp){
     return dp[n];
   
   // recursive case
+  
   int option1 = INT_MAX , option2 = INT_MAX;
   
   if(n-1 >= 0){
