@@ -1,0 +1,40 @@
+// Question link: https://practice.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1
+
+
+
+class Solution{
+    int solve(int N , int W , int val[] , int wt[] , vector<vector<int>>&dp){
+        
+        // if(N==0 or W==0)
+        // return 0;
+        if(N == 0)
+            return (W/wt[0]) * val[0];
+        //N == 0 means there is only one item to consider, 
+        //hence the best option is to try and take as many of it as possible => W/wt[0]
+        //multiplying with val[0], would give the respective value
+        
+        if(dp[N][W] != -1)
+            return dp[N][W];
+        
+        // not take
+        int option1 = 0 + solve(N-1,W,val,wt,dp);
+        
+        // take
+        int option2 = INT_MIN;
+        
+        // if(wt[N-1] <= W){
+        if(wt[N] <= W){
+            // option2 = val[N-1] + knapSack(N,W-wt[N-1],val,wt,dp);
+            option2 = val[N] + solve(N,W-wt[N],val,wt,dp);
+        }
+        
+        return dp[N][W] = max(option1 , option2);   
+    }
+    
+public:
+    int knapSack(int N, int W, int val[], int wt[])
+    {
+        vector<vector<int> >dp(N,vector<int>(W+1 , -1));
+        return solve(N-1,W,val,wt,dp);
+    }
+};
