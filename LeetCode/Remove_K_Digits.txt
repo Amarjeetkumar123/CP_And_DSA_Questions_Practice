@@ -1,0 +1,57 @@
+Question Link : https://leetcode.com/problems/remove-k-digits/
+
+Code 👍
+
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
+        
+        if(num.length() < k)
+            return "0";
+        
+        if(k == 0)
+            return num;
+        
+        stack<char>st;
+        string res = "";
+        
+        st.push(num[0]);
+        
+        for(int i=1;i<num.length();i++){
+            
+            while(k > 0 && !st.empty() && num[i] < st.top()){
+                k--;
+                st.pop();
+            }
+            
+            st.push(num[i]);
+            
+            // popping preceding zeroes
+            if(st.size() == 1 && num[i] == '0'){
+                st.pop();
+            }
+            
+        }
+        
+        while(k && !st.empty())
+        {
+            // for cases like "456" where every num[i] > num.top()
+            --k;
+            st.pop();
+        }
+        
+        while(!st.empty())
+        {
+            res.push_back(st.top()); // pushing stack top to string
+            st.pop(); // pop the top element
+        }
+        
+        reverse(res.begin(),res.end()); // reverse the string 
+        
+        if(res.length() == 0)
+            return "0";
+        
+        return res;
+        
+    }
+};
