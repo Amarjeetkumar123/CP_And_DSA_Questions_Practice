@@ -1,0 +1,36 @@
+Question link :     https://leetcode.com/contest/biweekly-contest-87/problems/maximum-matching-of-players-with-trainers/
+
+
+code:
+
+
+class Solution {
+public:
+    int matchPlayersAndTrainers(vector<int>& players, vector<int>& trainers) {
+        
+        sort(players.begin(),players.end());
+        sort(trainers.begin(),trainers.end());
+        
+        int i=0 , j=0 , ans = 0;
+        
+        while(i < players.size() && j < trainers.size()){
+            
+            int need = players[i];
+            // When the jth trainer ability is less, move to next trainer
+            while(trainers[j] < need){
+                j++;
+                
+                if(j == trainers.size()) return ans; // If we move next to last trainer, return the answer.
+            }
+            
+            // We got out right trainer for ith player, increment the answer and move to next trainer
+            if(trainers[j] >= need){
+                ans++;
+                j++;
+            }
+            i++;
+        }
+       
+        return ans;
+    }
+};
