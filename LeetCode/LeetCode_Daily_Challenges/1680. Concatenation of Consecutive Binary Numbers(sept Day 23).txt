@@ -1,0 +1,25 @@
+Code 👍
+
+
+class Solution {
+    
+    int countBits(int n){
+        
+        return log2(n)+1;
+    }
+public:
+    int concatenatedBinary(int n) {
+        
+        long long ans = 0;
+        long long mod = 1e9+7;
+        
+        for(int i=1;i<=n;i++){
+            
+            int total_bits = countBits(i);
+            
+            ans = ((ans << total_bits)%mod + i)%mod;
+        }
+        
+        return ans;
+    }
+};
