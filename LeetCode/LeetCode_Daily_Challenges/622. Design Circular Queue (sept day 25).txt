@@ -1,0 +1,81 @@
+code 👍
+
+class MyCircularQueue {
+    
+public:
+    MyCircularQueue(int k) {
+        
+        // the queue holding the elements for the circular queue
+        arr.resize(k);
+        // the number of elements in the circular queue
+        cnt = 0;
+        // queue size
+        size = k;
+        // the index of the head element
+        headIdx = 0;
+    }
+    
+    bool enQueue(int value) {
+        // check queue is full or not
+        if(isFull())
+            return false;
+        
+        arr[(headIdx + cnt) % size] = value;
+        
+        cnt += 1;
+        return true;
+    }
+    
+    bool deQueue() {
+        
+        if(isEmpty())
+            return false;
+        // update the head index
+        headIdx = (headIdx + 1) % size;
+        // decrease the number of elements by 1
+        cnt -= 1;
+        
+        return true;
+    }
+    
+    int Front() {
+        
+        if(isEmpty())
+            return -1;
+        
+        return arr[headIdx];
+    }
+    
+    int Rear() {
+        
+        if(isEmpty())
+            return -1;
+        
+        return arr[(headIdx + cnt - 1) % size];
+    }
+    
+    bool isEmpty() {
+        
+        return cnt == 0;
+    }
+    
+    bool isFull() {
+        // if count of element is equal to queue size(i.e. k) return true otherwise false
+        return cnt == size;
+    }
+    
+    private:
+        int cnt , size , headIdx;
+        vector<int>arr;
+};
+
+/**
+ * Your MyCircularQueue object will be instantiated and called as such:
+ * MyCircularQueue* obj = new MyCircularQueue(k);
+ * bool param_1 = obj->enQueue(value);
+ * bool param_2 = obj->deQueue();
+ * int param_3 = obj->Front();
+ * int param_4 = obj->Rear();
+ * bool param_5 = obj->isEmpty();
+ * bool param_6 = obj->isFull();
+ */
