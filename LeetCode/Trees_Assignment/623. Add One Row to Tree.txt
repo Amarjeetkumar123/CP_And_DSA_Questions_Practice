@@ -1,0 +1,55 @@
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+    TreeNode* solve(TreeNode* root , int val , int depth , int lvl){
+       
+        if(!root)
+            return nullptr;
+        
+        if(lvl == depth-1){
+            
+            TreeNode* node1 = new TreeNode(val);
+            TreeNode* node2 = new TreeNode(val);
+            
+            TreeNode* x = root->left;
+            TreeNode* y = root->right;
+            
+            root->left = node1;
+            root->right = node2;
+            
+            node1->left = x;
+            node2->right = y;
+        }
+        
+        solve(root->left , val , depth , lvl+1);
+        solve(root->right , val , depth , lvl+1);
+       
+            return root;
+    }
+public:
+    TreeNode* addOneRow(TreeNode* root, int val, int depth) {
+        if(!root)
+            return nullptr;
+        
+        if(depth == 1){
+            TreeNode* node = new TreeNode(val);
+            
+            node->left = root;
+            node->right = nullptr;
+            return node;
+        }
+        
+        return solve(root , val , depth , 1);
+    }
+};
