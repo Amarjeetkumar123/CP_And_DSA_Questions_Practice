@@ -17,10 +17,7 @@ void solve() {
 		}
 		sum[s]++;
 	}
-	for (int i = 0; i < 10; i++) {
-		cout << sum[i] << " ";
-	}
-	cout << endl;
+
 	cout << ans << endl;
 
 }
