@@ -6,6 +6,7 @@
 using namespace std;
 #define int long long
 
+// Top Down Approach
 int knapsack(vector<int>&weight, vector<int>&value, int capacity, int idx , vector<vector<int>>&dp) {
 	// base case
 	if (idx == 0) {
@@ -35,6 +36,11 @@ int knapsack(vector<int>&weight, vector<int>&value, int capacity, int idx , vect
 	return dp[idx][capacity] = ans;
 }
 
+
+
+// Bottom Up Approach
+
+
 int32_t main(void) {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
@@ -61,6 +67,7 @@ int32_t main(void) {
 		vector<vector<int>>dp(n, vector<int>(w + 1, -1));
 
 		cout << knapsack(weight, value, w, n - 1 , dp) << endl;
+
 
 	}
 	return 0;
