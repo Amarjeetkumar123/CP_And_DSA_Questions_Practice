@@ -1,0 +1,21 @@
+
+
+class Solution{
+public:
+    int totalWays(int n, vector<int>capacity) {
+        
+        long long mod = 1e9+7;
+        int n1 = capacity.size();
+        sort(capacity.begin(),capacity.end());
+        long long ans = 1;
+        
+        for(int i=0;i<n1;i++){
+            
+            capacity[i] = capacity[i]-i;
+            
+            ans = (ans*capacity[i])%mod;
+        }
+        
+        return (ans%mod);
+    }
+};
