@@ -1,0 +1,25 @@
+
+
+class Solution {
+public:
+    bool isPrime(int n)
+    {
+        if (n <= 1)
+            return false;
+
+        for (int i = 2; i <= sqrt(n); i++)
+            if (n % i == 0)
+                return false;
+     
+        return true;
+    }
+    string isSumOfTwo(int N){
+        
+        for(int i=2;i<N-1;i++){
+            if(isPrime(i) && isPrime(N-i))
+            return "Yes";
+        }
+        
+        return "No";
+    }
+};
