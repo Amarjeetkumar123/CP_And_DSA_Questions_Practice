@@ -1,0 +1,34 @@
+
+class Solution{
+	public:
+	vector<vector<int>>ans;
+	void solve(int index , vector<int>output , int sum){
+	    
+	    // base case
+	    if(sum == 0){
+	        ans.push_back(output);
+	        return;
+	    }
+	    
+	    if(index < 1)
+	        return;
+	    
+	    if(index <= sum){
+	        output.push_back(index);
+	        solve(index,output,sum-index);
+	        output.pop_back();
+	        solve(index-1,output,sum);
+	    }
+	    else{
+	        solve(index-1,output,sum);
+	    }
+	}
+    vector<vector<int>> UniquePartitions(int n) {
+        
+        vector<int>output;
+        
+        solve(n,output,n);
+        
+        return ans;
+    }
+};
