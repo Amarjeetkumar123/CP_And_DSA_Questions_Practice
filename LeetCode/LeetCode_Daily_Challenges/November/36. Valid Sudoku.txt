@@ -1,0 +1,30 @@
+class Solution {
+    string rowString , colString , boxString;
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        
+        unordered_set<string>uset;
+        
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                
+                if(board[i][j] != '.'){
+                    
+                    rowString = "row"+to_string(i)+to_string(board[i][j]);
+                    colString = "col"+to_string(j)+to_string(board[i][j]);
+                    boxString = "box"+to_string((i/3)*3+(j/3))+to_string(board[i][j]);
+                    
+                     if(uset.count(rowString) || uset.count(colString) || uset.count(boxString))
+                        return false;
+                    
+                    uset.insert(rowString);
+                    uset.insert(colString);
+                    uset.insert(boxString);
+                    
+                   
+                }
+            }
+        }
+        return true;
+    }
+};
