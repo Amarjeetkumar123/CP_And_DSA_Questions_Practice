@@ -1,0 +1,23 @@
+
+
+class Solution {
+  public:
+    long long int maxSumLCM(int n) 
+    {
+        long long int sum = 0;
+        
+        for(int i=1;i<=sqrt(n);i++){
+            
+            if(n%i == 0){
+                // If divisors are equal, add only one factor
+                if(n/i == i){
+                    sum += i;
+                }
+                else{// Otherwise add both factor
+                    sum += (n/i + i);
+                }
+            }
+        }
+        return sum;
+    }
+};
