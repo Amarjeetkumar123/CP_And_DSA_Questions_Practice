@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int jobScheduling(vector<int>& startTime, vector<int>& endTime, vector<int>& profit) {
+        
+        int n = startTime.size();
+        int dp[n];
+        vector<pair<int,pair<int,int>>>arr(n);
+        
+        for(int i=0;i<n;i++){
+            
+            arr[i].first = endTime[i];
+            arr[i].second.first = startTime[i];
+            arr[i].second.second = profit[i];
+        }
+        
+        sort(arr.begin(),arr.end());    // sort according to endTime
+        
+        for(int i=0;i<n;i++){
+            
+            if(i==0){
+                dp[i] = arr[i].second.second;
+                continue;
+            }
+            
+            int temp = 0;
+            for(int j=i-1;j>=0;j--){
+                
+                if(arr[j].first <= arr[i].second.first){ // endTime of j <= startTime of i index
+                    
+                    temp = dp[j];   // store jth tak ki maximum profit
+                    break;
+                }
+            }
+            
+            dp[i] = max(dp[i-1],temp+arr[i].second.second);
+        }
+        
+        return dp[n-1];
+    }
+};
