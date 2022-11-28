@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+        
+        set<int>s;
+        unordered_map<int,int>ump;
+        
+        for(int i=0;i<matches.size();i++){
+            s.insert(matches[i][0]);
+            s.insert(matches[i][1]);
+            
+        // looser
+            ump[matches[i][1]]++;
+        }
+        
+        vector<vector<int>>ans;
+        vector<int>winner;
+        vector<int>looser;
+        for(auto i : s){
+            
+            if(ump.count(i) == 0){
+                winner.push_back(i);
+            }
+            else{
+                if(ump[i] == 1){
+                    looser.push_back(i);
+                }
+            }
+        }
+        
+        ans.push_back(winner);
+        ans.push_back(looser);
+        
+        return ans;
+    }
+};
