@@ -1,0 +1,30 @@
+
+class Solution {
+public:
+    bool closeStrings(string word1, string word2) {
+        
+        vector<int>s1(26,0),s2(26,0),s3(26,0),s4(26,0);
+        // s1 and s2 for storing frequecy of character
+        // s3 and s4 for storing existing same character
+        int size1 = word1.size();
+        int size2 = word2.size();
+        
+        if(size1 != size2)
+            return false;
+        
+        for(auto x : word1){
+            s1[x-'a']++;
+            s3[x-'a'] = 1;
+        }
+        
+        for(auto x : word2){
+            s2[x-'a']++;
+            s4[x-'a'] = 1;
+        }
+        
+        sort(s1.begin(),s1.end());
+        sort(s2.begin(),s2.end());
+        
+        return s1==s2 && s3==s4;
+    }
+};
