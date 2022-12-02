@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool halvesAreAlike(string s) {
+        
+        set<char>st;
+        st.insert({'a','e','i','o','u','A','E','I','O','U'});
+        
+        int i=0;
+        int j=s.length()-1;
+        
+        int lcnt=0 , rcnt=0;
+        while(i < j){
+            if(st.count(s[i]))
+                lcnt++;
+            if(st.count(s[j]))
+                rcnt++;
+            
+            i++;
+            j--;
+        }
+        
+        return lcnt == rcnt;
+    }
+};
