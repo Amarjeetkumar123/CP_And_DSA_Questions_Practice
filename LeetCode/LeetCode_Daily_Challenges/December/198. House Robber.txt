@@ -1,0 +1,31 @@
+class Solution {
+    private:
+        int solve(vector<int>&nums ,vector<int>&dp , int index){
+            // base case
+            if(index >= nums.size()){
+                return 0;
+            }
+            
+            if(dp[index] != -1){
+                return dp[index];
+            }
+            
+            // recursive case
+            
+            // take
+            int opt1 = nums[index] + solve(nums , dp , index+2);
+            // not take
+            int opt2 = solve(nums, dp , index+1);
+                
+            dp[index] = max(opt1 , opt2);
+            
+            return dp[index];
+        }
+public:
+    int rob(vector<int>& nums) {
+        
+        vector<int>dp(nums.size()+1,-1);
+        
+        return solve(nums , dp , 0);
+    }
+};
