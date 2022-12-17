@@ -1,0 +1,9 @@
+class Solution{   
+public:
+    int waysToBreakNumber(int n){
+        
+        long long int m = 1e9+7;
+        
+        return (((n+1)%m) * ((n+2)%m)/2)%m;
+    }
+};
